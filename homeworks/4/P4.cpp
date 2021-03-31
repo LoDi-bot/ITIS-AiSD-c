@@ -1,26 +1,65 @@
-#include<vector>
-#include<iostream>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-void dfs(int v) {
-    used[v] = true;
-    components.back().push_back(v);
-    for (int u : graph[v]) {
-        if (!used[u]) {
-            dfs(u);
-        }
-    }
+vector<int> component;
+
+void dfs(int** matr, int n, int vertex, bool* used) {
+	used[vertex] = true;
+	component.push_back(vertex);
+	for (int i = 0; i < n; i++) {
+		if (matr[vertex][i] > 0 && !used[i]) {
+			dfs(matr, n, i, used);
+		}
+	}
+}
+
+int find(int** matr, int n, bool* used) {
+	for (int i = 0; i < n; i++) {
+		used[i] = false;
+	}
+	int max = 0;
+	for (int i = 0; i < n; i++) {
+		if (!used[i]) {
+			component.clear();
+			dfs(matr, n, i, used);
+			if (component.size() > max) {
+				max = component.size();
+			}
+		}
+	}
+	return max;
 }
 
 int main() {
-    int n;
-    cin >> n;
-    int graph[n][n];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> graph[i][j];
-        }
-    }
-    bool used[n];
+	int n;
+	cin >> n;
+
+	int** matr;
+	matr = new int* [n];
+	for (int i = 0; i < n; i++) {
+		matr[i] = new int[n];
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cin >> matr[i][j];
+		}
+	}
+
+	bool* used = new bool[n];
+	for (int i = 0; i < n; i++) {
+		used[i] = false;
+	}
+
+	dfs(matr, n, 3, used);
+	for (int i = 0; i < n; i++) {
+		cout << boolalpha << used[i] << " ";
+	}
+	cout << endl << endl;
+
+	cout << find(matr, n, used);
+
+	return 0;
 }
