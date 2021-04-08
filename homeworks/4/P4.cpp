@@ -54,9 +54,6 @@ int main() {
 	}
 
 	dfs(matr, n, 3, used);
-	for (int i = 0; i < n; i++) {
-		cout << boolalpha << used[i] << " ";
-	}
 	cout << endl << endl;
 
 	cout << find(matr, n, used);
