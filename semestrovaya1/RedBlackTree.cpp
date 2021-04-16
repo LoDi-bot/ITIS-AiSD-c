@@ -1,4 +1,6 @@
-#include <iostream>
+#include<iostream>
+#include<fstream>
+#include<ctime>
 
 using namespace std;
 
@@ -266,8 +268,8 @@ public:
 		postOrderHelper(this->root);
 	}
 
-	NodePtr searchTree(int k) {
-		return searchTreeHelper(this->root, k);
+	bool searchTree(int k) {
+		return searchTreeHelper(this->root, k)->data;
 	}
 
 	NodePtr minimum(NodePtr node) {
@@ -398,7 +400,7 @@ public:
 
 	void prettyPrint() {
 	    if (root) {
-    		printHelper(this->root, "", true);
+    		printHelper(this->root, " ", true);
 	    }
 	}
 
@@ -406,15 +408,52 @@ public:
 
 int main() {
 	RBTree bst;
-	bst.insert(8);
-	bst.insert(18);
-	bst.insert(5);
-	bst.insert(15);
-	bst.insert(17);
-	bst.insert(25);
-	bst.insert(40);
-	bst.insert(80);
-	bst.deleteNode(25);
-	bst.prettyPrint();
+	ifstream fin("test100-" + to_string(1) +".txt");
+	int key;
+    for (int i = 1; i <= 75; ++i) {
+        switch (i/15) {
+            case 0 : {
+                for (int j = 1; j <= 100; ++j) {
+                    fin >> key;
+                    bst.insert(key);
+                }
+                bst.prettyPrint();
+                fin.close();
+            }
+            case 1 : {
+                for (int j = 1; j <= 100; ++j) {
+                    fin >> key;
+                    bst.insert(key);
+                }
+                bst.prettyPrint();
+                fin.close();
+            }
+            case 2 : {
+                for (int j = 1; j <= 100; ++j) {
+                    fin >> key;
+                    bst.insert(key);
+                }
+                bst.prettyPrint();
+                fin.close();
+            }
+            case 3 : {
+                for (int j = 1; j <= 100; ++j) {
+                    fin >> key;
+                    bst.insert(key);
+                }
+                bst.prettyPrint();
+                fin.close();
+            }
+            case 4 : {
+                for (int j = 1; j <= 100; ++j) {
+                    fin >> key;
+                    bst.insert(key);
+                }
+                bst.prettyPrint();
+                fin.close();
+            }
+        }
+
+    }
 	return 0;
 }
