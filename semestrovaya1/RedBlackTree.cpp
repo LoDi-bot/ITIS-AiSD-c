@@ -407,79 +407,88 @@ public:
 };
 
 int main() {
-    ifstream fin;
-    int key;
-    for (int i = 0; i < 75; ++i) {
-        RBTree bst;
-        switch (i / 15) {
-            case 0 : {
-                fin.open("test100-" + to_string(i + 1) + ".txt");
-                int time = clock();
-                for (int j = 1; j <= 100; ++j) {
-                    fin >> key;
-                    bst.insert(key);
-                }
-                cout << "Insertion test " << i % 15 + 1 << " for 100 keys: " << clock() - time << " ms" << endl;
-                time = clock();
-                fin.close();
-                break;
-            }
-            case 1 : {
-                fin.open("test500-" + to_string(i + 1) + ".txt");
-                int time = clock();
-                for (int j = 1; j <= 500; ++j) {
-                    fin >> key;
-                    bst.insert(key);
-                }
-                cout << "Insertion test " << i % 15 + 1 << " for 500 keys: " << clock() - time << " ms" << endl;
-                fin.close();
-                break;
-            }
-            case 2 : {
-                fin.open("test1000-" + to_string(i + 1) + ".txt");
-                int time = clock();
-                for (int j = 1; j <= 1000; ++j) {
-                    fin >> key;
-                    bst.insert(key);
-                }
-                cout << "Insertion test " << i % 15 + 1 << " for 1000 keys: " << clock() - time << " ms" << endl;
-                fin.close();
-                break;
-            }
-            case 3 : {
-                fin.open("test5000-" + to_string(i + 1) + ".txt");
-                int time = clock();
-                for (int j = 1; j <= 5000; ++j) {
-                    fin >> key;
-                    bst.insert(key);
-                }
-                cout << "Insertion test " << i % 15 + 1 << " for 5000 keys: " << clock() - time << " ms" << endl;
-                fin.close();
-                break;
-            }
-            case 4 : {
-                fin.open("test10000-" + to_string(i + 1) + ".txt");
-                int time = clock();
-                for (int j = 1; j <= 10000; ++j) {
-                    fin >> key;
-                    bst.insert(key);
-                }
-                cout << "Insertion test " << i % 15 + 1 << " for 10000 keys: " << clock() - time << " ms" << endl;
-                fin.close();
-                break;
-            }
-        }
-
-    }
-    RBTree test;
-    test.insert(10);
-    test.insert(34);
-    test.insert(34);
-    test.insert(56);
-    test.insert(67);
-    test.insert(11);
-    test.insert(6);
-    test.insert(18);
-    test.prettyPrint();
+//    ifstream fin;
+//    int key;
+//    for (int i = 0; i < 75; ++i) {
+//        RBTree bst;
+//        switch (i / 15) {
+//            case 0 : {
+//                fin.open("test100-" + to_string(i + 1) + ".txt");
+//                int time;
+//                for (int j = 1; j <= 100; ++j) {
+//                    fin >> key;
+//                    time = clock();
+//                    bst.insert(key);
+//                    time = clock() - time;
+//                    cout << time << endl;
+//                }
+//                time = clock() - time;
+//                cout << "Insertion test " << i % 15 + 1 << " for 100 keys: " << time << " ms" << endl;
+//                fin.close();
+//                break;
+//            }
+//            case 1 : {
+//                fin.open("test500-" + to_string(i + 1) + ".txt");
+//                int time;
+//                for (int j = 1; j <= 500; ++j) {
+//                    fin >> key;
+//                    time = clock();
+//                    bst.insert(key);
+//                    time = clock() - time;
+//                    cout << time << endl;
+//                }
+//                time = clock() - time;
+//                cout << "Insertion test " << i % 15 + 1 << " for 500 keys: " << time << " ms" << endl;
+//                fin.close();
+//                break;
+//            }
+//            case 2 : {
+//                fin.open("test1000-" + to_string(i + 1) + ".txt");
+//                int time = clock();
+//                for (int j = 1; j <= 1000; ++j) {
+//                    fin >> key;
+//                    time = clock();
+//                    bst.insert(key);
+//                    time = clock() - time;
+//                    cout << time << endl;
+//                }
+//                time = clock() - time;
+//                cout << "Insertion test " << i % 15 + 1 << " for 1000 keys: " << time << " ms" << endl;
+//                fin.close();
+//                break;
+//            }
+//            case 3 : {
+//                fin.open("test5000-" + to_string(i + 1) + ".txt");
+//                int time;
+//                for (int j = 1; j <= 5000; ++j) {
+//                    fin >> key;
+//                    time = clock();
+//                    bst.insert(key);
+//                    time = clock() - time;
+//                    cout << time << endl;
+//                }
+//                time = clock() - time;
+//                cout << "Insertion test " << i % 15 + 1 << " for 5000 keys: " << time << " ms" << endl;
+//                fin.close();
+//                break;
+//            }
+//            case 4 : {
+//                fin.open("test10000-" + to_string(i + 1) + ".txt");
+//                int time;
+//                for (int j = 1; j <= 10000; ++j) {
+//                    fin >> key;
+//                    time = clock();
+//                    bst.insert(key);
+//                    time = clock() - time;
+//                    cout << time << endl;
+//                }
+//                time = clock() - time;
+//                cout << "Insertion test " << i % 15 + 1 << " for 10000 keys: " << time << " ms" << endl;
+//                fin.close();
+//                break;
+//            }
+//        }
+//
+//    }
     return 0;
 }
