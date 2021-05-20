@@ -1,55 +1,62 @@
 #include <iostream>
-
+#include <algorithm>
 using namespace std;
+const int maxn = 100000;
+int node[maxn];
+struct Edge{
+    int x, y;
+    int w;
+};
+Edge arr[maxn];
+bool cmp(const Edge& a, const Edge& b){
+    return a.w < b.w;
+}
+int find(int x){
+    if (x == node[x]){
+        return x;
+    } else{
+        return node[x] = find(node[x]);
+    }
+}
+void unite(int x, int y){
+    int a = find(x);
+    int b = find(y);
+    node[a] = b;
+}
 
 int main() {
     int n, m;
     cin >> n >> m;
-    int mass[n][n];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            mass[i][j] = 0;
-        }
+    int check[n];
+    for (int i=0; i<n; i++){
+        check[i] = 0;
+        node[i] = i;
     }
     for (int i = 0; i < m; i++) {
-        int x, y, v;
-        cin >> x >> y >> v;
-        mass[x-1][y-1] = v;
-        mass[y-1][x-1] = v;
+        int a, b, c;
+        cin >> a >> b >> c;
+        arr[i].x = a;
+        check[a-1]++;
+        check[b-1]++;
+        arr[i].y = b;
+        arr[i].w = c;
     }
-    bool ans = true;
-    for (int i = 0; i < n; i++) {
-        int check = 0;
-        for (int j = 0; j < n; j++) {
-            if (mass[i][j] == 0) {
-                check++;
-            } else {
-                break;
-            }
-        }
-        if (check == n) {
-            cout << "-1";
-            ans = false;
+    for (int i=0; i<n; i++){
+        if (check[i] == 0){
+            cout << -1;
+            return 0;
         }
     }
-    if (ans) {
-        bool *visited = new bool[n];
-        memset(visited, false, sizeof(bool) * n);
-        visited[0] = true;
-        int answer = 0;
-        for (int l = 0; l < n - 1; l++) {
-            int minx = -1, miny = -1;
-            for (int i = 0; i < n; i++)
-                if (visited[i])
-                    for (int j = 0; j < n; j++)
-                        if (!visited[j] && mass[i][j] > 0 && (miny == -1 || mass[i][j] < mass[miny][minx]))
-                            miny = i, minx = j;
-            visited[minx] = true;
-            answer += mass[miny][minx];
+    int sum = 0;
+    sort(arr, arr+m, cmp);
+    for (int i=0; i<m; i++){
+        int a = arr[i].x;
+        int b = arr[i].y;
+        if (find(a) != find(b)) {
+            unite(a, b);
+            sum += arr[i].w;
         }
-
-        cout << answer;
     }
-
+    cout << sum;
     return 0;
 }
