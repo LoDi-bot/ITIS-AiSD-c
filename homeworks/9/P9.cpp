@@ -91,9 +91,7 @@ void buildMinHeap(struct MinHeap *minHeap) {
 }
 
 void printArr(int arr[], int n) {
-    int i;
-    for (i = 0; i < n; ++i)
-        cout << arr[i];
+    cout << n;
     cout << "\n";
 }
 
@@ -134,7 +132,7 @@ void printCodes(struct MinHeapNode *root, int arr[], int top) {
         printCodes(root->right, arr, top + 1);
     }
     if (isLeaf(root)) {
-        cout << root->data << ": ";
+        cout << root->data << " ";
         printArr(arr, top);
     }
 }

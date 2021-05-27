@@ -1,6 +1,8 @@
 #include<iostream>
 #include<cmath>
 #include<algorithm>
+#include<ctime>
+#include<fstream>
 
 using namespace std;
 
@@ -52,15 +54,39 @@ void rec(int l, int r) {
 }
 
 int main() {
+
     int n;
-    std::cin >> n;
-    for (int i = 0; i < n; ++i) {
-        std::cin >> a[i].x >> a[i].y;
-        a[i].id = i;
+    for (int i = 0; i < 60; i++) {
+
+        ifstream fin("D://infa/pskda_aicd/LoDi/DodiTest/test" + to_string(i + 1) + ".txt");
+
+        fin >> n;
+
+        cout << "******************************" << endl;
+        cout << "test #" << i + 1 << endl;
+        cout << "n: " << n << endl;
+
+        for (int j = 0; j < n; ++j) {
+            fin >> a[j].x;
+            fin >> a[j].y;
+            a[j].id = j;
+        }
+
+
+        sort(a, a + n, &cmp_x);
+        mindist = 1E20;
+
+
+        clock_t start;
+        double duration;
+        start = clock();
+
+        rec(0, n - 1);
+        cout << "answer: " << mindist << endl;
+
+        duration = (clock() - start) / (double) CLOCKS_PER_SEC;
+        cout << "time: " << duration << "s" << endl;
+
     }
-    sort(a, a + n, &cmp_x);
-    mindist = 1E20;
-    rec(0, n - 1);
-    cout << mindist;
     return 0;
 }
